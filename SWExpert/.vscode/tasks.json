@@ -1,0 +1,52 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+      {
+          "label": "Exec with textfile",
+          "type": "shell",
+          "command" : "",
+          "args": [
+            "${fileDirname}/${fileBasenameNoExtension}.out",
+            "<",
+            "${fileDirname}/input.txt"
+          ],
+          "group" :"test"
+      },
+      {
+        "label": "Exec with shell",
+        "type": "shell",
+        "command" : "${fileDirname}/${fileBasenameNoExtension}.out",
+        "group" :"test"
+      },
+      {
+          "label": "Build with Clang",
+          "type": "shell",
+          "command": "clang++",
+          "args": [
+            "-std=c++17",
+            "-stdlib=libc++",
+            "${fileBasenameNoExtension}.cpp",
+            "-o",
+            "${fileBasenameNoExtension}.out"
+          ],
+          "group": {
+            "kind": "build",
+            "isDefault": true
+          }
+        },
+        {
+          "label": "Debug with Clang",
+          "type": "shell",
+          "command": "clang++",
+          "args": [
+            "-std=c++17",
+            "-stdlib=libc++",
+            "${fileBasenameNoExtension}.cpp",
+            "-o",
+            "${fileBasenameNoExtension}.out",
+            "--debug"
+          ],
+          "group": "build"
+        }
+  ]
+}
